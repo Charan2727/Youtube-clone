@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom';
 import Youtube from '../img/logo.png'
 import HomeIcon from '@mui/icons-material/Home';
 import ExploreIcon from '@mui/icons-material/Explore';
@@ -56,6 +57,10 @@ align-items:center;
 gap:20px;
 cursor:pointer;
 padding:7.5px 0px;
+
+&:hover{
+    background-color:${({ theme }) => theme.soft};
+}
 `;
 
 const Hr = styled.hr`
@@ -90,10 +95,12 @@ function Menu({ darkMode, setDarkMode }) {
     return (
         <Container>
             <Wrapper>
-                <Logo>
-                    <Img src={Youtube} />
-                    Youtube
-                </Logo>
+                <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+                    <Logo>
+                        <Img src={Youtube} />
+                        Youtube
+                    </Logo>
+                </Link>
                 <Item>
                     <HomeIcon />
                     Home
@@ -118,10 +125,12 @@ function Menu({ darkMode, setDarkMode }) {
                 <Hr />
                 <Login>
                     Sign in to like videos, comment, and subscribe.
-                    <Button><AccountCircleIcon />SIGN IN</Button>
+                    <Link to="signin" style={{ textDecoration: "none" }}>
+                        <Button><AccountCircleIcon />SIGN IN</Button>
+                    </Link>
                 </Login>
                 <Hr />
-                <Title>BEST OF YouTUBE</Title>
+                <Title>BEST OF Youtube</Title>
                 <Item>
                     <LibraryMusicIcon />
                     Music
@@ -161,12 +170,12 @@ function Menu({ darkMode, setDarkMode }) {
                 </Item>
                 <Item onClick={() => setDarkMode(!darkMode)}>
                     <SettingsBrightnessIcon />
-                    Light Mode
+                    {darkMode ? "Light" : "Dark"} Mode
                 </Item>
 
             </Wrapper>
 
-        </Container>
+        </Container >
     )
 }
 
